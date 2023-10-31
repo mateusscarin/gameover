@@ -20,11 +20,15 @@ export class AppComponent implements OnInit {
   }
 
   submit() {
-    this.form.value['nomeCliente'] = `'${this.form.value['nomeCliente']}'`;
-    this.form.value['senha'] = `'${this.form.value['senha']}'`;
-    this.loginService.logar(this.form.value).subscribe(
+    this.loginService.logarWithInjection(this.form.value).subscribe(
       resp => { },
       error => { console.log(error.error)}
     );
+    /*
+    this.loginService.logar(this.form.value).subscribe(
+      resp => { },
+      error => { console.log(error.error) }
+    );
+    */
   }
 }

@@ -10,12 +10,14 @@
 <body>
   <div class="container">
     <form (ngSubmit)="submit()" [formGroup]="form">
+      <h1>Login</h1>
       <div class="field" >
-        <label for="">Email</label>
+        <label for="">Nome cliente</label>
         <input type="text" formControlName="nomeCliente" >
       </div>
       <div class="field">
-        <label for="">Password</label>
+
+        <label for="">Senha</label>
         <input type="text" formControlName="senha">
       </div>
       <input type="submit" value="Enviar">
