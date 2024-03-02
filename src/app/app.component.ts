@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -8,27 +6,13 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  form!: FormGroup;
 
-  constructor(private loginService: LoginService) { }
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      nomeCliente: new FormControl(''),
-      senha: new FormControl('')
-    });
+  constructor() {
+    setInterval(() => {
+      localStorage.setItem('isLogged', 'false');
+    }, 30000)
   }
 
-  submit() {
-    this.loginService.logarWithInjection(this.form.value).subscribe(
-      resp => { },
-      error => { console.log(error.error)}
-    );
-    /*
-    this.loginService.logar(this.form.value).subscribe(
-      resp => { },
-      error => { console.log(error.error) }
-    );
-    */
-  }
+  ngOnInit(): void { }
+
 }

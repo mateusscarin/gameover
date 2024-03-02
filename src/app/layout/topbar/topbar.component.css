@@ -1,0 +1,46 @@
+.container {
+    width: auto;
+    height: 12vh;
+    background-color: var(--background);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    width: 40%;
+}
+
+.container img {
+    height: 70%;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+ul>li {
+    color: white;
+}
+
+ul>li:hover {
+    color: rgb(103, 122, 151);
+    transition: 0.5s;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 742px) {
+    .navigation {
+        gap: 0.8rem;
+    }
+    
+    ul>li {
+        font-size: 0.8rem;
+        text-wrap: nowrap;
+    }
+}

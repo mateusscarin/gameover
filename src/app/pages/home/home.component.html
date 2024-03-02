@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="call-to-action">
+        <h1>Tudo que buscou de <span class="text-highlight">melhor</span> e não encontrou, <span class="text-highlight">aqui</span> você encontra!</h1>
+    </div>
+    <h2>Produtos</h2>
+    <div class="products">
+        <div class="card" *ngFor="let card of cards">
+            <img [src]="card.image" alt="">
+            <h3>{{card.label}}</h3>
+            <p>{{card.description}}</p>
+        </div>
+    </div>
+
+</div>

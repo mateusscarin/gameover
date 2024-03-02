@@ -1,0 +1,14 @@
+<div class="container">
+    <img src="assets/images/logo-icon.svg" alt="Logo site">
+    <nav>
+        <ul class="navigation">
+            <li routerLink="/home">Home</li>
+            <li routerLink="/cadastro">Cadastro</li>
+            <li>Sobre nós</li>
+        </ul>
+    </nav>
+    <div class="utils">
+        <button class="primary-button" routerLink="/login" *ngIf="!userIsLogged()">Entrar</button>
+        <button class="primary-button" routerLink="/login" *ngIf="userIsLogged()" (click)="deslogar()">Deslogar</button>
+    </div>
+</div>

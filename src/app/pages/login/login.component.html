@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <form [formGroup]="form">
+      <h1>Login</h1>
+      <div class="field">
+        <label for="">Nome cliente</label>
+        <input type="email" formControlName="email"
+          [ngClass]="{'is-invalid': submitted && form.controls['email'].errors}">
+        <div *ngIf="submitted && form.controls['email'].errors" class="invalid-feedback">
+          <div *ngIf="submitted && form.controls['email'].errors['required']">
+            E-mail é obrigatório!
+          </div>
+          <div *ngIf="submitted && form.controls['email'].errors['email']">
+            E-mail informado é inválido!
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="">Senha</label>
+        <input type="password" formControlName="senha"
+          [ngClass]="{'is-invalid': submitted && form.controls['senha'].errors}">
+        <div *ngIf="submitted && form.controls['senha'].errors" class="invalid-feedback">
+          <div *ngIf="submitted && form.controls['senha'].errors['required']"></div>
+          Senha é obrigatória!
+        </div>
+      </div>
+      <button type="submit" class="primary-button" (click)="logar()">Entrar</button>
+    </form>
+  </div>
+</body>
+
+</html>
