@@ -5,7 +5,7 @@
 }
 
 .container {
-    width: 100%;
+    min-width: 100%;
 }
 
 .call-to-action {
@@ -78,7 +78,7 @@ p {
     .call-to-action {
         background-position: top;
         padding: 15rem 2rem;
-        background-image: url("../../../assets/images/notebook.jpg");
+        background-image: url("../../../assets/images/background.jpg");
         background-size: auto !important;
     }
 

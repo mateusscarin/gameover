@@ -34,6 +34,8 @@ ul>li {
     background-color: var(--primary-color-hover);
 }
 
+
+
 input:focus {
     border: none !important;
 }
@@ -46,4 +48,15 @@ input:focus {
     font-size: 0.7rem;
     color: rgb(201, 0, 0);
     font-weight: bold;
+}
+
+@media screen and (max-width: 742px) {
+    .primary-button {
+        font-size: 0.7rem;
+    }
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: row;
 }

@@ -18,6 +18,8 @@ export class CadastroComponent implements OnInit {
   fb: FormBuilder = new FormBuilder();
   form!: FormGroup;
   submitted: boolean = false;
+  isCheckedTerms: boolean = false;
+  isPasswordWeak: boolean = true;
 
   constructor(private router: Router) { }
 
@@ -31,16 +33,16 @@ export class CadastroComponent implements OnInit {
 
   cadastrar() {
     this.submitted = true
-    if (this.form.invalid) {
+    if (this.form.invalid || !this.isCheckedTerms || this.isPasswordWeak) {
       return;
     }
-    localStorage.clear();
-    const user: User = {
-      email: this.form.value.email,
-      nomeCliente: this.form.value.nomeCliente,
-      senha: this.form.value.senha
-    };
-    localStorage.setItem('user', user.toString());
+    localStorage.setItem('isLogged', 'true');
+    this.router.navigate(['/home']);
+  }
+
+  testPassword(): void {
+    const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-=_+|;':",.<>/?]).+$/;
+    this.isPasswordWeak = !(regex.test(this.form.value.senha));
   }
 
 }
