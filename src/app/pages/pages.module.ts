@@ -5,6 +5,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PagesRoutingModule } from './pages-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -12,7 +13,8 @@ import { PagesRoutingModule } from './pages-routing.module';
   declarations: [
     HomeComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
