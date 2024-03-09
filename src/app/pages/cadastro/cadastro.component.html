@@ -44,12 +44,19 @@
                     </div>
                 </div>
                 <div *ngIf="submitted && isPasswordWeak" class="feedback-password">
-                    Senha fraca!
+                    Senha fraca! Deve conter pelo menos: <br>
+                    - 1 caracter especial<br>
+                    - 1 letra maiúscula<br>
+                    - Números<br>
                 </div>
             </div>
             <div class="d-flex gap-1">
-                <input type="checkbox" [value]="isCheckedTerms">
-                <span class="terms">Eu li e concordo com os termos de uso</span>
+                <input type="checkbox" formControlName="isCheckedTerms">
+                <span class="terms">Eu li e concordo com os <a href="#">termos de uso</a></span>
+            </div>
+            <div *ngIf="submitted && form.value && !form.value.isCheckedTerms" class="feedback-password"
+                style="margin-top: -1rem;">
+                Marcação obrigatória!
             </div>
             <button type="submit" class="primary-button" (click)="cadastrar()">Enviar</button>
         </form>
