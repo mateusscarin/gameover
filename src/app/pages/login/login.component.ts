@@ -12,12 +12,13 @@ export class LoginComponent implements OnInit {
   fb: FormBuilder = new FormBuilder;
   form!: FormGroup;
   submitted: boolean = false;
+  isPasswordWeak: boolean = true;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
       senha: [null, [Validators.required]]
     });
   }
@@ -30,5 +31,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isLogged', 'true');
       this.router.navigate(['/home']);
     }
+  }
+
+  testPassword(): void {
+    const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-=_+|;':",.<>/?]).+$/;
+    this.isPasswordWeak = !(regex.test(this.form.value.senha));
   }
 }

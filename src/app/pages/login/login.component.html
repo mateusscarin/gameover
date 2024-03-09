@@ -12,27 +12,28 @@
     <form [formGroup]="form">
       <h1>Login</h1>
       <div class="field">
-        <label for="">Nome cliente</label>
+        <label for="">E-mail</label>
         <input type="email" formControlName="email"
           [ngClass]="{'is-invalid': submitted && form.controls['email'].errors}">
         <div *ngIf="submitted && form.controls['email'].errors" class="invalid-feedback">
           <div *ngIf="submitted && form.controls['email'].errors['required']">
-            E-mail é obrigatório!
-          </div>
-          <div *ngIf="submitted && form.controls['email'].errors['email']">
-            E-mail informado é inválido!
+            E-mail deve ser informado!
           </div>
         </div>
       </div>
       <div class="field">
         <label for="">Senha</label>
-        <input type="password" formControlName="senha"
+        <input type="password" formControlName="senha" (keyup)="testPassword()"
           [ngClass]="{'is-invalid': submitted && form.controls['senha'].errors}">
         <div *ngIf="submitted && form.controls['senha'].errors" class="invalid-feedback">
           <div *ngIf="submitted && form.controls['senha'].errors['required']"></div>
-          Senha é obrigatória!
+          Senha deve ser informada!
         </div>
       </div>
+      <div *ngIf="submitted && isPasswordWeak" class="feedback-password">
+        Email ou senha inválidos!
+      </div>
+      <span class="not-account">Não possui conta? <a routerLink="/cadastro">Clique aqui.</a></span>
       <button type="submit" class="primary-button" (click)="logar()">Entrar</button>
     </form>
   </div>
