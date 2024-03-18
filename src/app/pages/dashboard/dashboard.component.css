@@ -8,6 +8,21 @@
     align-items: center;
 }
 
+.cards-container {
+    display: flex;
+    justify-content: space-around;
+    margin-block: 1rem 3rem;
+}
+
+.card {
+    min-height: 100px;
+    min-width: 23%;
+}
+
+.mat-card {
+    width: 24%;
+}
+
 table {
     width: 100%;
 }
@@ -15,12 +30,24 @@ table {
 .mat-paginator {
     padding: 0 !important;
     background: none;
+    
 }
 
 .mat-form-field {
     font-size: 14px;
     width: 70%;
     padding-inline: 1rem;
+}
+
+.mat-card-title {
+    font-weight: bold;
+    font-size: 3rem;
+    color: white;
+}
+
+.mat-card-subtitle {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.582);
 }
 
 td,

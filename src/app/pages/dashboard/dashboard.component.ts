@@ -99,17 +99,9 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  CHART_COLORS = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
-  };
-
   chart: any;
+
+  cards: any;
 
   constructor() {
     Chart.register(...registerables);
@@ -119,6 +111,12 @@ export class DashboardComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.createChart();
+    this.cards = [
+      { value: 17, label: '(Usuários Adicionados)', background: '#00c0ef' },
+      { value: 5092, label: '(Vendas Android)', background: '#f39c11' },
+      { value: 2570, label: '(Vendas IOs)', background: '#00a65a' },
+      { value: 4810, label: '(Vendas Notebooks)', background: '#dd4c39' }
+    ];
   }
 
   ngAfterViewInit() {
@@ -139,36 +137,36 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     const DATA_COUNT = 10;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
     const CHART_COLORS = {
-      red: 'rgb(255, 99, 132)',
+      red: '#dd4c39',
       orange: 'rgb(255, 159, 64)',
       yellow: 'rgb(255, 205, 86)',
-      green: 'rgb(75, 192, 192)',
+      green: '#00a65a',
       blue: 'rgb(54, 162, 235)',
       purple: 'rgb(153, 102, 255)',
       grey: 'rgb(201, 203, 207)'
     };
 
-    const labels = this.months({ count: 10 });
+    const labels = this.months({ count: DATA_COUNT });
     const data = {
       labels: labels,
       datasets: [
-        {
-          label: 'Android',
-          data: this.numbers(NUMBER_CFG),
-          borderColor: CHART_COLORS.red,
-          backgroundColor: CHART_COLORS.red,
-        },
-        {
-          label: 'IOs',
-          data: this.numbers(NUMBER_CFG),
-          borderColor: CHART_COLORS.blue,
-          backgroundColor: CHART_COLORS.blue,
-        },
         {
           label: 'Notebook',
           data: this.numbers(NUMBER_CFG),
           borderColor: CHART_COLORS.orange,
           backgroundColor: CHART_COLORS.orange,
+        },
+        {
+          label: 'IOs',
+          data: this.numbers(NUMBER_CFG),
+          borderColor: CHART_COLORS.green,
+          backgroundColor: CHART_COLORS.green,
+        },
+        {
+          label: 'Android',
+          data: this.numbers(NUMBER_CFG),
+          borderColor: CHART_COLORS.red,
+          backgroundColor: CHART_COLORS.red,
         }
       ]
     };

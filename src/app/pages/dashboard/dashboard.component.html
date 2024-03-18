@@ -1,4 +1,9 @@
-<div></div>
+<div class="cards-container">
+    <mat-card *ngFor="let card of cards" class="card" [style]="'background-color: '+card.background">
+        <mat-card-title>{{card.value}}</mat-card-title>
+        <mat-card-subtitle>{{card.label}}</mat-card-subtitle>
+    </mat-card>
+</div>
 <div class="chart-container">
     <canvas id="MyChart">{{ chart }}</canvas>
 </div>
