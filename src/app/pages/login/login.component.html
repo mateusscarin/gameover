@@ -1,42 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <div class="container">
-    <form [formGroup]="form">
-      <h1>Login</h1>
-      <div class="field">
-        <label for="">E-mail</label>
-        <input type="email" formControlName="email"
-          [ngClass]="{'is-invalid': submitted && form.controls['email'].errors}">
-        <div *ngIf="submitted && form.controls['email'].errors" class="invalid-feedback">
-          <div *ngIf="submitted && form.controls['email'].errors['required']">
-            E-mail deve ser informado!
-          </div>
+<div class="container">
+  <form [formGroup]="form">
+    <h1>Login</h1>
+    <div class="field">
+      <label for="">E-mail</label>
+      <input type="email" formControlName="email"
+        [ngClass]="{'is-invalid': submitted && form.controls['email'].errors}">
+      <div *ngIf="submitted && form.controls['email'].errors" class="invalid-feedback">
+        <div *ngIf="submitted && form.controls['email'].errors['required']">
+          E-mail deve ser informado!
         </div>
       </div>
-      <div class="field">
-        <label for="">Senha</label>
-        <input type="password" formControlName="senha" (keyup)="testPassword()"
-          [ngClass]="{'is-invalid': submitted && form.controls['senha'].errors}">
-        <div *ngIf="submitted && form.controls['senha'].errors" class="invalid-feedback">
-          <div *ngIf="submitted && form.controls['senha'].errors['required']"></div>
-          Senha deve ser informada!
-        </div>
+    </div>
+    <div class="field">
+      <label for="">Senha</label>
+      <input type="password" formControlName="senha" (keyup)="testPassword()"
+        [ngClass]="{'is-invalid': submitted && form.controls['senha'].errors}">
+      <div *ngIf="submitted && form.controls['senha'].errors" class="invalid-feedback">
+        <div *ngIf="submitted && form.controls['senha'].errors['required']"></div>
+        Senha deve ser informada!
       </div>
-      <div *ngIf="submitted && isPasswordWeak" class="feedback-password">
-        Email ou senha inválidos!
-      </div>
-      <span class="not-account">Não possui conta? <a routerLink="/cadastro">Clique aqui.</a></span>
-      <button type="submit" class="primary-button" (click)="logar()">Entrar</button>
-    </form>
-  </div>
-</body>
-
-</html>
+    </div>
+    <div *ngIf="submitted && isPasswordWeak" class="feedback-password">
+      Email ou senha inválidos!
+    </div>
+    <span class="not-account">Não possui conta? <a routerLink="/cadastro">Clique aqui.</a></span>
+    <button type="submit" class="primary-button" (click)="logar()">Entrar</button>
+  </form>
+</div>

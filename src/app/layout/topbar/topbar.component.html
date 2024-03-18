@@ -4,7 +4,7 @@
         <ul class="navigation">
             <li routerLink="/home">Home</li>
             <li routerLink="/cadastro">Cadastro</li>
-            <li routerLink="/dashboard">Dashboard</li>
+            <li routerLink="/dashboard" *ngIf="userIsLogged()">Dashboard</li>
         </ul>
     </nav>
     <div class="utils">

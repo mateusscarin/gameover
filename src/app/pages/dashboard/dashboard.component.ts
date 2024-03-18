@@ -1,12 +1,104 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Chart, registerables } from 'chart.js';
+
+export interface UserData {
+  id: string;
+  name: string;
+  progress: string;
+  dispositive: string;
+}
+
+const DISPOSITIVES: string[] = [
+  'Samsung Galaxy S21',
+  'Samsung Galaxy S20',
+  'Samsung Galaxy Note 20',
+  'Samsung Galaxy A51',
+  'Samsung Galaxy A71',
+  'Xiaomi Redmi Note 10',
+  'Xiaomi Mi 11',
+  'Google Pixel 5',
+  'Google Pixel 4a',
+  'OnePlus 9 Pro',
+  'OnePlus 8 Pro',
+  'Huawei P40 Pro',
+  'Huawei Mate 40 Pro',
+  'Oppo Find X3 Pro',
+  'Oppo Reno 5',
+  'Vivo X60 Pro',
+  'Realme 8 Pro',
+  'Motorola Moto G Power',
+  'LG Velvet',
+  'Sony Xperia 1 III',
+  'iPhone 13 Pro',
+  'iPhone 13',
+  'iPhone 12 Pro',
+  'iPhone 12',
+  'iPhone SE (2ª geração)',
+  'iPhone 11',
+  'iPhone XR',
+  'iPhone XS',
+  'iPhone X',
+  'iPhone 8 Plus',
+  'iPhone 7 Plus',
+  'iPhone 6s Plus',
+  'iPhone SE (1ª geração)',
+  'iPhone 5s',
+  'Apple MacBook Pro (M1)',
+  'Apple MacBook Air (M1)',
+  'Dell XPS 13',
+  'HP Spectre x360',
+  'Lenovo ThinkPad X1 Carbon',
+  'Asus ZenBook 14',
+  'Acer Swift 3',
+  'Microsoft Surface Laptop 4',
+  'Razer Blade 15',
+  'HP Envy 13',
+  'Dell Inspiron 15',
+  'Lenovo IdeaPad Flex 5',
+  'Asus ROG Zephyrus G14',
+  'Acer Predator Helios 300',
+  'Microsoft Surface Book 3',
+  'HP Pavilion x360',
+  'Lenovo Legion 5',
+  'Dell XPS 15',
+  'Asus VivoBook S15',
+  'MSI GS66 Stealth'
+];
+
+const NAMES: string[] = [
+  'João',
+  'José',
+  'Antônio',
+  'Francisco',
+  'Carlos',
+  'Paulo',
+  'Pedro',
+  'Lucas',
+  'Luiz',
+  'Marcos',
+  'Márcio',
+  'Maria',
+  'Ana',
+  'Francisca',
+  'Adriana'
+];
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit, OnInit {
+
+  displayedColumns: string[] = ['id', 'name', 'progress', 'dispositive'];
+  dataSource: MatTableDataSource<UserData>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   CHART_COLORS = {
     red: 'rgb(255, 99, 132)',
     orange: 'rgb(255, 159, 64)',
@@ -21,11 +113,28 @@ export class DashboardComponent implements OnInit {
 
   constructor() {
     Chart.register(...registerables);
+    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+    this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit(): void {
     this.createChart();
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   createChart() {
     const DATA_COUNT = 10;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
@@ -44,20 +153,26 @@ export class DashboardComponent implements OnInit {
       labels: labels,
       datasets: [
         {
-          label: 'Dataset 1',
+          label: 'Android',
           data: this.numbers(NUMBER_CFG),
           borderColor: CHART_COLORS.red,
           backgroundColor: CHART_COLORS.red,
         },
         {
-          label: 'Dataset 2',
+          label: 'IOs',
           data: this.numbers(NUMBER_CFG),
           borderColor: CHART_COLORS.blue,
           backgroundColor: CHART_COLORS.blue,
+        },
+        {
+          label: 'Notebook',
+          data: this.numbers(NUMBER_CFG),
+          borderColor: CHART_COLORS.orange,
+          backgroundColor: CHART_COLORS.orange,
         }
       ]
     };
-    this.chart = new Chart("MyChart", {
+    this.chart = new Chart('MyChart', {
       type: 'line',
       data: data,
       options: {
@@ -128,4 +243,19 @@ export class DashboardComponent implements OnInit {
     }
     return values;
   }
+}
+
+function createNewUser(id: number): UserData {
+  const name =
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
+    ' ' +
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
+    '.';
+
+  return {
+    id: id.toString(),
+    name: name,
+    progress: Math.round(Math.random() * 100).toString(),
+    dispositive: DISPOSITIVES[Math.round(Math.random() * (DISPOSITIVES.length - 1))],
+  };
 }

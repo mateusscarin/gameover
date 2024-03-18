@@ -1,3 +1,29 @@
 .chart-container {
     width: 100% !important;
+    margin-bottom: 3rem;
+}
+
+.table-header {
+    display: flex;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-paginator {
+    padding: 0 !important;
+    background: none;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 70%;
+    padding-inline: 1rem;
+}
+
+td,
+th {
+    width: 25%;
 }

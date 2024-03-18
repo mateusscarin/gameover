@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.submitted = false;
       localStorage.setItem('isLogged', 'true');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/dashboard']);
     }
   }
 
