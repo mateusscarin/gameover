@@ -32,7 +32,7 @@ import { PagesRoutingModule } from './pages-routing.module';
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

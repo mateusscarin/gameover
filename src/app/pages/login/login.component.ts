@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,9 +15,13 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   isPasswordWeak: boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      this.router.navigate(['/dashboard']);
+      localStorage.setItem('isLogged', 'true');
+    });
     this.form = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       senha: [null, [Validators.required]]
@@ -25,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.submitted = true;
-    console.log(this.form.controls)
     if (this.form.valid) {
       this.submitted = false;
       localStorage.setItem('isLogged', 'true');
@@ -37,4 +41,5 @@ export class LoginComponent implements OnInit {
     const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-=_+|;':",.<>/?]).+$/;
     this.isPasswordWeak = !(regex.test(this.form.value.senha));
   }
+
 }
