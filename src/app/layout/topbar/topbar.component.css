@@ -14,7 +14,7 @@
 
 nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     height: 100%;
     width: 40%;
 }
@@ -26,6 +26,7 @@ nav {
 .navigation {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 3rem;
     margin: none !important;
     padding: 0 !important;
@@ -47,7 +48,7 @@ ul>li:hover {
     }
 
     ul>li {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         text-wrap: nowrap;
     }
 

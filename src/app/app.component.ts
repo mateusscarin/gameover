@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   constructor() {
     setInterval(() => {
       localStorage.setItem('isLogged', 'false');
-    }, 30000)
+    }, 600000);
   }
 
   ngOnInit(): void { }

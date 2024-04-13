@@ -30,7 +30,7 @@ table {
 .mat-paginator {
     padding: 0 !important;
     background: none;
-    
+
 }
 
 .mat-form-field {
@@ -53,4 +53,36 @@ table {
 td,
 th {
     width: 25%;
+}
+
+@media screen and (max-width: 576px) {
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem !important;
+    }
+
+    .card {
+        width: 90% !important;
+    }
+
+    .table-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mat-form-field {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .mat-paginator {
+        display: inline;
+        font-size: 0.65rem !important;
+    }
+
+    table {
+        overflow: scroll;
+    }
 }
